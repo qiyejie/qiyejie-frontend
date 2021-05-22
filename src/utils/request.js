@@ -1,6 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-import { Toast } from 'vant'
 
 class Request {
 	constructor(baseURL, headers = {
@@ -26,7 +25,7 @@ class Request {
 		this.request.interceptors.response.use((config) => {
 			// 对响应数据做些事
 			if (~~config.data.code !== 0) {
-				Toast.success(config.data.message)
+				this.$toast.success(config.data.message)
 			}
 			if (~~config.data.code === 411) { // 重新登录
 				console.log('重新登录')

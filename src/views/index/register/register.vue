@@ -2,63 +2,70 @@
   <div class="register">
     <div class="register-title">
       欢迎注册企业捷
-      <image
-        class="register-logo"
-        src="../../static/logo/logo.png"
-        mode="aspectFit"
-      ></image>
+      <van-image
+      class="register-logo"
+      src="http://icon.tanyang.asia/logo.png"
+      fit="cover"
+    ></van-image>
     </div>
-    <div class="register-form">
-      <div class="cu-form-group">
-        <div class="title">设置邮箱</div>
-        <input placeholder="请输入邮箱" name="input" v-model="email" />
+    <van-form @submit="submit">
+      <van-field
+        v-model="email"
+        name="邮箱"
+        label="邮箱"
+        placeholder="请输入邮箱账号注册"
+        :rules="[{ required: true, message: '请输入邮箱账号注册!' }]"
+      />
+      <van-field
+        v-model="password"
+        type="password"
+        name="密码"
+        label="密码"
+        placeholder="请填写密码"
+        :rules="[{ required: true, message: '请填写密码' }]"
+      />
+      <van-field
+        v-model="confirm_password"
+        type="password"
+        name="确认密码"
+        label="确认密码"
+        placeholder="请确认密码"
+        :rules="[{ validator,required: true, message: '请确认密码' }]"
+      />
+      <div style="margin: 16px;">
+        <van-button round block class="register-button" native-type="submit"
+          >注册</van-button
+        >
       </div>
-      <div class="cu-form-group">
-        <div class="title">设置密码</div>
-        <input
-          placeholder="请输入密码"
-          name="input"
-          password
-          v-model="password"
-        />
-      </div>
-      <div class="cu-form-group">
-        <div class="title">确认密码</div>
-        <input
-          placeholder="请再次输入密码"
-          name="input"
-          password
-          v-model="password_second"
-        />
-      </div>
-      <button class="bg-gradual-blue register-form" @click="submit">
-        注册
-      </button>
-    </div>
+    </van-form>
   </div>
 </template>
 
 <script>
+import { Button, Image as VanImage, Form, Field } from "vant";
 import { userRegister } from '@/api'
 
 export default {
   data: () => ({
     email: '',
     password: '',
-    password_second: ''
+    confirm_password: ''
   }),
   components: {
-    
+    "van-button": Button,
+    VanImage,
+    'van-form':Form,
+    "van-field": Field,
   },
   methods: {
-    validate() {
-      if (!(this.password === this.password_second)) {
-        Toast.fail('两次密码输入不一致')
+    validator() {
+      if (!(this.password === this.confirm_password)) {
+        this.$toast.fail('两次密码输入不一致')
         return false
       } else return true
     },
     submit() {
-      if (!this.validate()) return
+      if (!this.validator()) return
       const data = {
         email: this.email,
         password: this.password
@@ -78,13 +85,17 @@ export default {
   &-title {
     font-size: 26px;
     display: flex;
+    padding: 10px;
   }
   &-logo {
     width: 40px;
     height: 40px;
+    padding-left: 5px;
   }
-  &-form {
+  &-button {
     margin-top: 30px;
+    color: #ffffff;
+    background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
   }
 }
 </style>

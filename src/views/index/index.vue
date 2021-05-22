@@ -1,6 +1,20 @@
 <template>
   <div class="message">
-    <div class="cu-list menu-avatar">
+    <van-swipe-cell>
+      <van-cell title="单元格" />
+      <template #title>
+        <van-image
+          width="100"
+          height="100"
+          src="http://icon.tanyang.asia/t0"
+        />
+      </template>
+      <template #right>
+        <van-button square type="danger" text="删除" />
+        <van-button square type="primary" text="置顶" />
+      </template>
+    </van-swipe-cell>
+    <!-- <div class="cu-list menu-avatar">
       <div
         class="cu-item"
         :class="modalName == 'move-box-' + index ? 'move-cur' : ''"
@@ -28,10 +42,10 @@
             {{ item.name }}
             <span class="text-grey text-xs message-time">{{ item.time }}</span>
           </div>
-          <div class="text-gray text-sm">
-            <!-- <text v-if="item.failure"
+          <div class="text-gray text-sm"> -->
+    <!-- <text v-if="item.failure"
 						class="cuIcon-infofill text-red margin-right-xs"></text> -->
-            <text
+    <!-- <text
               :class="{
                 'cuIcon-infofill': item.failure,
                 'text-red': item.failure,
@@ -46,106 +60,113 @@
           <div class="bg-red">删除</div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import { Cell, SwipeCell, Button, Image as VanImage } from "vant";
+
 export default {
-  components: {},
+  components: {
+    "van-cell": Cell,
+    "van-swipe-cell": SwipeCell,
+    "van-button": Button,
+    VanImage,
+  },
   data() {
     return {
       messageArray: [
         {
-          name: '博远',
-          preContent: 'OK',
+          name: "博远",
+          preContent: "OK",
           newMsg: 0,
-          time: '10:42',
-          failure: false
+          time: "10:42",
+          failure: false,
         },
         {
-          name: '张升',
-          preContent: '明天肯定给你答复！',
+          name: "张升",
+          preContent: "明天肯定给你答复！",
           newMsg: 6,
-          time: '10:08',
-          failure: false
+          time: "10:08",
+          failure: false,
         },
         {
-          name: '秀良',
-          preContent: '约个会议室吧',
+          name: "秀良",
+          preContent: "约个会议室吧",
           newMsg: 4,
-          time: '09:03',
-          failure: false
+          time: "09:03",
+          failure: false,
         },
         {
-          name: '小明',
-          preContent: '持续跟进这个项目哈~',
+          name: "小明",
+          preContent: "持续跟进这个项目哈~",
           newMsg: 5,
-          time: '昨天',
-          failure: false
-        }
+          time: "昨天",
+          failure: false,
+        },
       ],
       cuIconList: [
         {
-          cuIcon: 'cardboardfill',
-          color: 'red',
+          cuIcon: "cardboardfill",
+          color: "red",
           badge: 120,
-          name: 'VR'
+          name: "VR",
         },
         {
-          cuIcon: 'recordfill',
-          color: 'orange',
+          cuIcon: "recordfill",
+          color: "orange",
           badge: 1,
-          name: '录像'
+          name: "录像",
         },
         {
-          cuIcon: 'picfill',
-          color: 'yellow',
+          cuIcon: "picfill",
+          color: "yellow",
           badge: 0,
-          name: '图像'
+          name: "图像",
         },
         {
-          cuIcon: 'noticefill',
-          color: 'olive',
+          cuIcon: "noticefill",
+          color: "olive",
           badge: 22,
-          name: '通知'
+          name: "通知",
         },
         {
-          cuIcon: 'upstagefill',
-          color: 'cyan',
+          cuIcon: "upstagefill",
+          color: "cyan",
           badge: 0,
-          name: '排行榜'
+          name: "排行榜",
         },
         {
-          cuIcon: 'clothesfill',
-          color: 'blue',
+          cuIcon: "clothesfill",
+          color: "blue",
           badge: 0,
-          name: '皮肤'
+          name: "皮肤",
         },
         {
-          cuIcon: 'discoverfill',
-          color: 'purple',
+          cuIcon: "discoverfill",
+          color: "purple",
           badge: 0,
-          name: '发现'
+          name: "发现",
         },
         {
-          cuIcon: 'questionfill',
-          color: 'mauve',
+          cuIcon: "questionfill",
+          color: "mauve",
           badge: 0,
-          name: '帮助'
+          name: "帮助",
         },
         {
-          cuIcon: 'commandfill',
-          color: 'purple',
+          cuIcon: "commandfill",
+          color: "purple",
           badge: 0,
-          name: '问答'
+          name: "问答",
         },
         {
-          cuIcon: 'brandfill',
-          color: 'mauve',
+          cuIcon: "brandfill",
+          color: "mauve",
           badge: 0,
-          name: '版权'
-        }
+          name: "版权",
+        },
       ],
       modalName: null,
       gridCol: 3,
@@ -155,69 +176,68 @@ export default {
       menuCard: false,
       skin: false,
       listTouchStart: 0,
-      listTouchDirection: null
-    }
+      listTouchDirection: null,
+    };
   },
   methods: {
     toChat() {
-      this.$route.push(
-				'/pages/chat/chat'
-			)
+      this.$router.push("/pages/chat/chat");
     },
     open() {
-      this.$refs.popup.open()
+      this.$refs.popup.open();
     },
     showModal(e) {
-      this.modalName = e.currentTarget.dataset.target
+      this.modalName = e.currentTarget.dataset.target;
     },
-    hideModal(e) {
-      this.modalName = null
+    hideModal() {
+      this.modalName = null;
     },
     Gridchange(e) {
-      this.gridCol = e.detail.value
+      this.gridCol = e.detail.value;
     },
     Gridswitch(e) {
-      this.gridBorder = e.detail.value
+      this.gridBorder = e.detail.value;
     },
     MenuBorder(e) {
-      this.menuBorder = e.detail.value
+      this.menuBorder = e.detail.value;
     },
     MenuArrow(e) {
-      this.menuArrow = e.detail.value
+      this.menuArrow = e.detail.value;
     },
     MenuCard(e) {
-      this.menuCard = e.detail.value
+      this.menuCard = e.detail.value;
     },
     SwitchSex(e) {
-      this.skin = e.detail.value
+      this.skin = e.detail.value;
     },
 
     // ListTouch触摸开始
     ListTouchStart(e) {
-      this.listTouchStart = e.touches[0].pageX
+      this.listTouchStart = e.touches[0].pageX;
     },
 
     // ListTouch计算方向
     ListTouchMove(e) {
       this.listTouchDirection =
-        e.touches[0].pageX - this.listTouchStart > 0 ? 'right' : 'left'
+        e.touches[0].pageX - this.listTouchStart > 0 ? "right" : "left";
     },
 
     // ListTouch计算滚动
     ListTouchEnd(e) {
-      if (this.listTouchDirection == 'left') {
-        this.modalName = e.currentTarget.dataset.target
+      if (this.listTouchDirection == "left") {
+        this.modalName = e.currentTarget.dataset.target;
       } else {
-        this.modalName = null
+        this.modalName = null;
       }
-      this.listTouchDirection = null
-    }
-  }
-}
+      this.listTouchDirection = null;
+    },
+  },
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .message {
+  background-color: #bfbfbf !important;
   &-avatar {
     position: relative;
   }

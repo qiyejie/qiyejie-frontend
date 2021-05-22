@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     toLogin() {
-      this.$route.push('/index/login/login')
+      this.$router.push('/login')
     },
   },
 };
