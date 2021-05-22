@@ -17,3 +17,7 @@ export function userLogin(data) {
 export function userChangeInfo(params) {
 	return request.get('/user/user_change_info.php',params)
 }
+
+export function createToDo(data) {
+	return request.post('/oa/need_deal/new_deal.php',data)
+}
