@@ -1,6 +1,6 @@
 {
   "name": "qiyejie-frontend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,9 +8,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "date-fns": "^2.19.0",
+    "js-cookie": "^2.2.1",
+    "qs": "^6.10.1",
     "vant": "^2.12.19",
-    "vue": "^2.6.11"
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

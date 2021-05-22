@@ -23,7 +23,6 @@
             }
           ]"
         ></div>
-        <!-- <uni-badge class="message-badge" v-if="item.newMsg != 0" :text="item.newMsg" type="error"></uni-badge> -->
         <div class="message-content">
           <div class="text-grey">
             {{ item.name }}

@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <work />
+    <index />
   </div>
 </template>
 
 <script>
-import work from './views/work/work.vue'
+import index from './views/index/index.vue'
 
 export default {
   name: 'App',
   components: {
-    work
+    index
   }
 }
 </script>

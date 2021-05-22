@@ -35,7 +35,6 @@
         注册
       </button>
     </div>
-    <tui-toast ref="toast" position="center"></tui-toast>
   </div>
 </template>
 
@@ -53,12 +52,8 @@ export default {
   },
   methods: {
     validate() {
-      let options = {
-        title: '两次密码输入不一致',
-        icon: false
-      }
       if (!(this.password === this.password_second)) {
-        this.$refs.toast.show(options)
+        Toast.fail('两次密码输入不一致')
         return false
       } else return true
     },
@@ -70,7 +65,6 @@ export default {
       }
       userRegister(data).then(res =>
       console.log(res)
-              // this.$refs.toast.show({ title: res.data.message, icon: false })
       )
     }
   }

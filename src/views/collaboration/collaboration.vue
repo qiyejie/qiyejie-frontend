@@ -1,7 +1,7 @@
 <template>
   <div class="collaboration">
-    <tui-grid>
-      <tui-grid-item
+    <van-grid>
+      <van-grid-item
         class="collaboration-list"
         v-for="(item, index) in collaborationList"
         :key="index"
@@ -9,11 +9,11 @@
         :cell="5"
       >
         <div class="icon">
-          <tui-icon :name="item.icon" :color="item.color" :size="26"></tui-icon>
+          <van-icon :name="item.icon" :color="item.color" :size="26"></van-icon>
         </div>
         <text class="label">{{ item.name }}</text>
-      </tui-grid-item>
-    </tui-grid>
+      </van-grid-item>
+    </van-grid>
     <div class="collaboration-item">
       <div class="collaboration-item-main">
         <div class="collaboration-item-left">
@@ -23,11 +23,11 @@
         </div>
         <div class="collaboration-item-content">暂无内容</div>
       </div>
-      <tui-icon
+      <van-icon
         class="collaboration-icon"
         name="plus"
         color="#00BFFF"
-      ></tui-icon>
+      ></van-icon>
     </div>
     <div class="collaboration-item">
       <div class="collaboration-item-title">待办</div>
@@ -35,11 +35,11 @@
         今天做点什么
         <div class="collaboration-add">创建待办</div>
       </div>
-      <tui-icon
+      <van-icon
         class="collaboration-icon"
         name="plus"
         color="#00BFFF"
-      ></tui-icon>
+      ></van-icon>
     </div>
     <div class="collaboration-item">
       <div class="collaboration-item-title">我发起的审批</div>
@@ -52,9 +52,8 @@
 </template>
 
 <script>
-import tuiGrid from "thorui-uni/lib/thorui/tui-grid/tui-grid";
-import tuiGridItem from "thorui-uni/lib/thorui/tui-grid-item/tui-grid-item";
-import tuiIcon from "thorui-uni/lib/thorui/tui-icon/tui-icon";
+import { Grid, GridItem, Icon } from "vant";
+import tuiIcon from "thorui-uni/lib/thorui/van-icon/van-icon";
 import { getDay, format } from "date-fns";
 
 export default {
@@ -88,9 +87,9 @@ export default {
     ],
   }),
   components: {
-    tuiGrid,
-    tuiGridItem,
-    tuiIcon,
+    Grid,
+    GridItem,
+    Icon,
   },
   computed: {
     getDay: () => {

@@ -2,7 +2,7 @@
   <div class="work">
     <div class="work-notice">
       <tui-list-cell :hover="false" :arrow="false" color="#999">
-        <tui-icon name="news-fill" :size="20" color="#FF7F24"></tui-icon>
+        <van-icon name="news-fill" :size="20" color="#FF7F24"></van-icon>
         公告
       </tui-list-cell>
       <div class="work-notice-board">
@@ -25,8 +25,8 @@
         ></tui-tabs>
       </div>
       <div class="work-allApp-mine" v-if="currentTab == 0">
-        <tui-grid>
-          <tui-grid-item
+        <van-grid>
+          <van-grid-item
             v-for="(item, index) in myAppList"
             :key="index"
             :border="false"
@@ -36,12 +36,12 @@
               <image class="icon" :src="item.icon" mode="aspectFit"></image>
             </div>
             <text class="label">{{ item.name }}</text>
-          </tui-grid-item>
-        </tui-grid>
+          </van-grid-item>
+        </van-grid>
       </div>
       <div class="work-allApp-all" v-else>
-        <tui-grid>
-          <tui-grid-item
+        <van-grid>
+          <van-grid-item
             v-for="(item, index) in workAllAppList"
             :key="index"
             :border="false"
@@ -51,8 +51,8 @@
               <image class="icon" :src="item.icon" mode="aspectFit"></image>
             </div>
             <text class="label">{{ item.name }}</text>
-          </tui-grid-item>
-        </tui-grid>
+          </van-grid-item>
+        </van-grid>
       </div>
     </div>
     <div class="work-sign_in">
@@ -81,9 +81,9 @@
 </template>
 
 <script>
-import tuiGrid from 'thorui-uni/lib/thorui/tui-grid/tui-grid'
-import tuiGridItem from 'thorui-uni/lib/thorui/tui-grid-item/tui-grid-item'
-import tuiIcon from 'thorui-uni/lib/thorui/tui-icon/tui-icon'
+import tuiGrid from 'thorui-uni/lib/thorui/van-grid/van-grid'
+import tuiGridItem from 'thorui-uni/lib/thorui/van-grid-item/van-grid-item'
+import tuiIcon from 'thorui-uni/lib/thorui/van-icon/van-icon'
 import tuiTabs from 'thorui-uni/lib/thorui/tui-tabs/tui-tabs'
 import tuiListCell from 'thorui-uni/lib/thorui/tui-list-cell/tui-list-cell'
 // import { user_change_info } from '@/api/index.js'

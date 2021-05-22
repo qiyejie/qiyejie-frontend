@@ -1,32 +1,31 @@
 <template>
-	<div class="me">
-    <tui-list-cell arrow @click="toLogin">去登录</tui-list-cell></div>
+  <div class="me">
+    <van-list @click="toLogin" is-link>去登录</van-list>
+  </div>
 </template>
 
 <script>
-import tuiListCell from 'thorui-uni/lib/thorui/tui-list-cell/tui-list-cell'
+import { Cell } from 'vant';
 
 export default {
-	data() {
-		return {}
-	},
-	components: {
-		'tui-list-cell': tuiListCell
-	},
-	methods: {
-		toLogin() {
-			uni.navigateTo({
-				url: '/pages/login/login'
-			})
-		}
-	}
-}
+  data() {
+    return {};
+  },
+  components: {
+    "van-cell": Cell,
+  },
+  methods: {
+    toLogin() {
+      this.$route.push('/index/login/login')
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .me {
-	position: absolute;
-	width: 100%;
-	top: var(--status-bar-height);
+  position: absolute;
+  width: 100%;
+  top: var(--status-bar-height);
 }
 </style>

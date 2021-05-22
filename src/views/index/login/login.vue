@@ -47,7 +47,6 @@ export default {
       }
       userLogin(data).then(res =>
       console.log(res)
-              // this.$refs.toast.show({ title: res.data.message, icon: false })
       )
     },
     toRegister() {
