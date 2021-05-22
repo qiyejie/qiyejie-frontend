@@ -90,6 +90,7 @@ export default {
   &-logo {
     width: 40px;
     height: 40px;
+    padding-left: 5px;
   }
   &-button {
     margin-top: 30px;
