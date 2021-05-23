@@ -46,7 +46,7 @@ export default {
   components: {
     "van-button": Button,
     VanImage,
-    'van-form':Form,
+    "van-form": Form,
     "van-field": Field,
   },
   methods: {
@@ -55,7 +55,13 @@ export default {
         email: this.email,
         password: this.password,
       };
-      userLogin(data).then((res) => console.log(res));
+      userLogin(data).then((res) => {
+        if (!res.code) {
+          this.$toast.success(res.data.message);
+        } else {
+          this.$toast.fail(res.data.message);
+        }
+      });
     },
     toRegister() {
       this.$router.push("register");
@@ -69,7 +75,7 @@ export default {
   padding: 30px;
   text-align: center;
   &-logo {
-    margin-top: 20px;
+    margin: 20px 0;
     width: 40%;
   }
   &-button {

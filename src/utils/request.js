@@ -1,66 +1,82 @@
-import axios from 'axios'
-import qs from 'qs'
+import axios from "axios";
+import qs from "qs";
+import { Toast } from "vant";
 
 class Request {
-	constructor(baseURL, headers = {
-		'content-type': 'application/x-www-form-urlencoded'
-	}) {
-		this.request = axios.create({
-			baseURL,
-			headers
-		})
+  constructor(
+    baseURL,
+    headers = {
+      "content-type": "application/x-www-form-urlencoded",
+    }
+  ) {
+    this.request = axios.create({
+      baseURL,
+      headers,
+    });
 
-		// 添加请求拦截器
-		this.request.interceptors.request.use(config => {
-			config.params = {
-				...config.params
-			}
-			return config
-		}, (error) => {
-			// 请求错误时做些事
-			return Promise.reject(error)
-		})
+    // 添加请求拦截器
+    this.request.interceptors.request.use(
+      (config) => {
+        config.params = {
+          ...config.params,
+        };
+        return config;
+      },
+      (error) => {
+        // 请求错误时做些事
+        return Promise.reject(error);
+      }
+    );
 
-		// 添加响应拦截器
-		this.request.interceptors.response.use((config) => {
-			// 对响应数据做些事
-			if (~~config.data.code !== 0) {
-				this.$toast.success(config.data.message)
-			}
-			if (~~config.data.code === 411) { // 重新登录
-				console.log('重新登录')
-			}
-			return config
-
-		}, (error) => {
-			if (error.response) {
-				const {
-					status,
-					data
-				} = error.response
-				if (~~status === 401 && data.code === 500001) {
-					// forceQuit()
-				}
-			}
-			// 响应错误时做些事
-			return Promise.reject(error)
-		})
-	}
-	get(url, params) {
-		return this.request.get(url, {
-			params
-		})
-	}
-	post(url, data, config = {
-		headers: {
-			'content-type': 'application/x-www-form-urlencoded'
-		}
-	}, useStringifyData = true) {
-		return this.request.post(url, (useStringifyData ? qs.stringify(data) : data), config)
-	}
-	postJson(url, data) {
-		return this.request.post(url, data)
-	}
+    // 添加响应拦截器
+    this.request.interceptors.response.use(
+      (config) => {
+        // 对响应数据做些事
+        if (~~config.data.code !== 0) {
+          Toast.fail(config.data.message);
+        }
+        if (~~config.data.code === 411) {
+          // 重新登录
+          console.log("重新登录");
+        }
+        return config;
+      },
+      (error) => {
+        if (error.response) {
+          const { status, data } = error.response;
+          if (~~status === 401 && data.code === 500001) {
+            // forceQuit()
+          }
+        }
+        // 响应错误时做些事
+        return Promise.reject(error);
+      }
+    );
+  }
+  get(url, params) {
+    return this.request.get(url, {
+      params,
+    });
+  }
+  post(
+    url,
+    data,
+    config = {
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+      },
+    },
+    useStringifyData = true
+  ) {
+    return this.request.post(
+      url,
+      useStringifyData ? qs.stringify(data) : data,
+      config
+    );
+  }
+  postJson(url, data) {
+    return this.request.post(url, data);
+  }
 }
 
-export default Request
+export default Request;

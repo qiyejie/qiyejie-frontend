@@ -53,7 +53,6 @@
 
 <script>
 import { Grid, GridItem, Icon } from "vant";
-import tuiIcon from "thorui-uni/lib/thorui/van-icon/van-icon";
 import { getDay, format } from "date-fns";
 
 export default {
@@ -87,9 +86,9 @@ export default {
     ],
   }),
   components: {
-    Grid,
-    GridItem,
-    Icon,
+    'van-grid':Grid,
+    'van-grid-item':GridItem,
+    'van-icon':Icon,
   },
   computed: {
     getDay: () => {
